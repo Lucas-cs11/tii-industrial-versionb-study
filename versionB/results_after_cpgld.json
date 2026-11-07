@@ -1,0 +1,56 @@
+{
+ "schema": "tii-versionb-after-cpgld/1",
+ "method": "paper repair() / CPG-LD (bounded coarse admissible grid), certificate oracle backend",
+ "source": "results_cpgld_bounded.json",
+ "changes": {
+  "t_StartLoading": {
+   "from": [
+    "0",
+    "3"
+   ],
+   "to": [
+    "0",
+    "2"
+   ]
+  },
+  "t_StartProcessing": {
+   "from": [
+    "0",
+    "3"
+   ],
+   "to": [
+    "2",
+    "2"
+   ]
+  }
+ },
+ "L": 10,
+ "H": 60,
+ "production_verdict": "VER",
+ "enumeration_complete": true,
+ "certificates": 0,
+ "scg_classes": 189,
+ "scg_edges": 262,
+ "production_runtime_s": 41.01,
+ "normal_completion": {
+  "length": 22,
+  "observable": 10,
+  "interval": [
+   "35",
+   "42"
+  ],
+  "within_H": true
+ },
+ "fault_completion": {
+  "length": 24,
+  "observable": 10,
+  "interval": [
+   "43",
+   "52"
+  ],
+  "within_H": true
+ },
+ "baseline_pairs_still_overlapping": 0,
+ "baseline_pairs_total": 1749,
+ "nonvacuous_task_preservation": true
+}

@@ -1,0 +1,82 @@
+{
+ "backend": "surrogate-certificate-oracle (paper repair() API)",
+ "candidate_grid": [
+  [
+   "0",
+   "0"
+  ],
+  [
+   "0",
+   "3"
+  ],
+  [
+   "1",
+   "1"
+  ],
+  [
+   "2",
+   "2"
+  ],
+  [
+   "3",
+   "3"
+  ],
+  [
+   "3/2",
+   "3/2"
+  ]
+ ],
+ "timeout_s": 120,
+ "status": "CPG_LD_FAILURE",
+ "iterations": 2,
+ "modified_intervals": {},
+ "verifier_calls": 9,
+ "log_tail": [
+  {
+   "t_s": 6.714,
+   "result": "AMB",
+   "n_certs": 108
+  },
+  {
+   "t_s": 7.61,
+   "result": "AMB",
+   "n_certs": 108
+  },
+  {
+   "t_s": 8.147,
+   "result": "AMB",
+   "n_certs": 72
+  },
+  {
+   "t_s": 6.285,
+   "result": "AMB",
+   "n_certs": 1749
+  },
+  {
+   "t_s": 5.915,
+   "result": "AMB",
+   "n_certs": 72
+  },
+  {
+   "t_s": 5.361,
+   "result": "AMB",
+   "n_certs": 72
+  },
+  {
+   "t_s": 5.736,
+   "result": "AMB",
+   "n_certs": 72
+  },
+  {
+   "t_s": 5.474,
+   "result": "AMB",
+   "n_certs": 72
+  },
+  {
+   "t_s": 5.461,
+   "result": "AMB",
+   "n_certs": 72
+  }
+ ],
+ "error": null
+}

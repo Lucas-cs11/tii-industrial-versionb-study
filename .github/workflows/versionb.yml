@@ -8,7 +8,7 @@ permissions:
 jobs:
   study:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -24,35 +24,58 @@ jobs:
           git -C literature_tpn_case_eval checkout --quiet 73dbbdc
       - name: Freeze Version B-before and domain
         run: python versionB/freeze.py | tee results_freeze.json
-      - name: Verify exhaustive Version B-after (production COMPLETE_SET)
-        run: python versionB/after_exhaustive.py | tee results_after.json
-      - name: Bounded paper CPG-LD run (budget)
-        run: |
-          timeout 420 python versionB/run_cpgld_bounded.py --timeout 360 | tee results_cpgld.json || true
-      - name: Summarize
+      - name: AMB certificate for Version B-before
+        run: python versionB/amb_certificate_B.py | tee results_amb.json
+      - name: Production COMPLETE_SET for Version B-before
         run: |
           python - <<'PY'
-          import json, os, glob, datetime
+          import sys, json, time
+          sys.path.insert(0, "versionB"); sys.path.insert(0, "tpn-illustrative-case")
+          import freeze
+          from src.verifier import verify
+          t = freeze.build_before()
+          st = time.perf_counter(); r = verify(t, L=10, H=60, complete_set=True)
+          json.dump({"verdict": r["result"], "enumeration_complete": r.get("enumeration_complete"),
+                     "certificates": len(r["certificates"]),
+                     "stats": {k: v for k, v in r["stats"].items() if "runtime" not in k},
+                     "runtime_s": round(time.perf_counter()-st, 2)},
+                    open("results_before.json", "w"), indent=1)
+          assert r["result"] == "AMB" and r.get("enumeration_complete")
+          PY
+      - name: Bounded paper CPG-LD run
+        run: |
+          timeout 420 python versionB/run_cpgld_bounded.py --timeout 360 | tee results_cpgld.json || true
+      - name: Production COMPLETE_SET for CPG-LD B-after
+        run: |
+          python versionB/after_cpgld.py | tee results_after_cpgld.json
+      - name: Exhaustive alternative B-after
+        run: python versionB/after_exhaustive.py | tee results_after_exhaustive.json
+      - name: Collect results
+        run: |
+          mkdir -p results
+          cp versionB/results_before_complete_set.json versionB/results_cpgld_bounded.json versionB/results_after_cpgld.json versionB/results_after_exhaustive.json versionB/results_B_amb_certificate.json versionB/FROZEN_B.json versionB/DOMAIN_B.json results/
+          python - <<'PY'
+          import json, os, datetime
           summary = {
             "run_id": os.environ.get("GITHUB_RUN_ID"),
             "commit": os.environ.get("GITHUB_SHA"),
             "utc": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-            "baseline_certificates": len(json.load(open("versionB/results_before_complete_set.json"))["certificates"]),
-            "after": json.load(open("versionB/results_after_exhaustive.json")),
-            "cpgld": json.load(open("versionB/results_cpgld_bounded.json")) if os.path.exists("versionB/results_cpgld_bounded.json") else None,
+            "before": json.load(open("results/results_before_complete_set.json"))["verdict"],
+            "before_certificates": len(json.load(open("results/results_before_complete_set.json"))["certificates"]),
+            "cpgld": json.load(open("results/results_cpgld_bounded.json"))["status"],
+            "after_verdict": json.load(open("results/results_after_cpgld.json"))["production_verdict"],
+            "after_certificates": json.load(open("results/results_after_cpgld.json"))["certificates"],
+            "nonvacuous": json.load(open("results/results_after_cpgld.json"))["nonvacuous_task_preservation"],
           }
-          json.dump(summary, open("results/summary.json","w") if os.path.isdir("results") else open("summary.json","w"), indent=1)
+          json.dump(summary, open("results/summary.json", "w"), indent=1)
+          print(json.dumps(summary, indent=1))
+          assert summary["before"] == "AMB"
+          assert summary["after_verdict"] == "VER" and summary["after_certificates"] == 0
+          assert summary["nonvacuous"] is True
+          assert summary["cpgld"] == "CPG_LD_SUCCESS"
           PY
-          mkdir -p results && cp versionB/results_after_exhaustive.json versionB/results_before_complete_set.json versionB/FROZEN_B.json versionB/DOMAIN_B.json results/ 2>/dev/null || true
-          [ -f versionB/results_cpgld_bounded.json ] && cp versionB/results_cpgld_bounded.json results/ || true
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: versionb-results
-          path: |
-            results/
-            versionB/results_after_exhaustive.json
-            versionB/results_before_complete_set.json
-            versionB/FROZEN_B.json
-            versionB/DOMAIN_B.json
-          if-no-files-found: warn
+          path: results/

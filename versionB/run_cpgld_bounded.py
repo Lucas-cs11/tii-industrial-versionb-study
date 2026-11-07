@@ -88,8 +88,10 @@ def main():
             if lo <= hi:
                 out.append(Certificate(phi=tuple(phi), sigma_N=tuple(sn),
                                        sigma_F=tuple(sf), overlap=(lo, hi)))
-        log.append({'t_s': round(time.perf_counter() - t0, 3),
-                    'result': 'AMB' if out else 'VER', 'n_certs': len(out)})
+        rec = {'t_s': round(time.perf_counter() - t0, 3),
+               'result': 'AMB' if out else 'VER', 'n_certs': len(out)}
+        log.append(rec)
+        print('verifier_call', len(log), rec, flush=True)
         return {'result': 'AMB' if out else 'VER', 'certificates': out,
                 'certificate_mode': 'COMPLETE_SET', 'enumeration_complete': True}
 
