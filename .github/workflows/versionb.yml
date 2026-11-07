@@ -23,14 +23,14 @@ jobs:
           git clone --quiet https://github.com/Lucas-cs11/tii-published-tpn-case-eval.git literature_tpn_case_eval
           git -C literature_tpn_case_eval checkout --quiet 73dbbdc
       - name: Freeze Version B-before and domain
-        run: python versionB/freeze.py | tee results_freeze.json
+        run: python industrial_versionB/versionB/freeze.py | tee results_freeze.json
       - name: AMB certificate for Version B-before
-        run: python versionB/amb_certificate_B.py | tee results_amb.json
+        run: python industrial_versionB/versionB/amb_certificate_B.py | tee results_amb.json
       - name: Production COMPLETE_SET for Version B-before
         run: |
           python - <<'PY'
           import sys, json, time
-          sys.path.insert(0, "versionB"); sys.path.insert(0, "tpn-illustrative-case")
+          sys.path.insert(0, "industrial_versionB/versionB"); sys.path.insert(0, "tpn-illustrative-case")
           import freeze
           from src.verifier import verify
           t = freeze.build_before()
@@ -44,16 +44,16 @@ jobs:
           PY
       - name: Bounded paper CPG-LD run
         run: |
-          timeout 420 python versionB/run_cpgld_bounded.py --timeout 360 | tee results_cpgld.json || true
+          timeout 420 python industrial_versionB/versionB/run_cpgld_bounded.py --timeout 360 | tee results_cpgld.json || true
       - name: Production COMPLETE_SET for CPG-LD B-after
         run: |
-          python versionB/after_cpgld.py | tee results_after_cpgld.json
+          python industrial_versionB/versionB/after_cpgld.py | tee results_after_cpgld.json
       - name: Exhaustive alternative B-after
-        run: python versionB/after_exhaustive.py | tee results_after_exhaustive.json
+        run: python industrial_versionB/versionB/after_exhaustive.py | tee results_after_exhaustive.json
       - name: Collect results
         run: |
           mkdir -p results
-          cp versionB/results_before_complete_set.json versionB/results_cpgld_bounded.json versionB/results_after_cpgld.json versionB/results_after_exhaustive.json versionB/results_B_amb_certificate.json versionB/FROZEN_B.json versionB/DOMAIN_B.json results/
+          cp industrial_versionB/versionB/results_before_complete_set.json industrial_versionB/versionB/results_cpgld_bounded.json industrial_versionB/versionB/results_after_cpgld.json industrial_versionB/versionB/results_after_exhaustive.json industrial_versionB/versionB/results_B_amb_certificate.json industrial_versionB/versionB/FROZEN_B.json industrial_versionB/versionB/DOMAIN_B.json results/
           python - <<'PY'
           import json, os, datetime
           summary = {
