@@ -21,7 +21,7 @@ jobs:
       - name: Clone pinned exact oracle engine
         run: |
           git clone --quiet https://github.com/Lucas-cs11/tii-published-tpn-case-eval.git literature_tpn_case_eval
-          git -C literature_tpn_case_eval checkout --quiet 73dbbdc
+          git -C literature_tpn_case_eval checkout --quiet c93de735a9e8049255ec700526d12aa8379e8e61
       - name: Freeze final model and domain
         run: python industrial_versionB/final/scripts/freeze_final.py | tee results_freeze.json
       - name: Fraction round-trip regression
