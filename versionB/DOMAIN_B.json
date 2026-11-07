@@ -1,0 +1,227 @@
+{
+ "schema": "tii-adjustment-domain/1",
+ "domain_id": "VERSION_B_ILLUSTRATIVE_ADMISSIBLE_ADJUSTMENT",
+ "model_id": "industrial_17P15T_versionB_before",
+ "structure": {
+  "places": 18,
+  "transitions": 16,
+  "arcs": 45
+ },
+ "L": 10,
+ "H": 60,
+ "adjustable_transitions": [
+  "t_StartLoading",
+  "t_StartProcessing",
+  "t_StartTransfer",
+  "t_StartInspection",
+  "t_StartUnloading",
+  "t_StartReworkTransfer"
+ ],
+ "process_meaning": "start/hand-off delay between an operation becoming enabled and the robot/machine/station actually starting it",
+ "frozen_intervals": {
+  "t_FinishLoading": [
+   "2",
+   "2"
+  ],
+  "t_FinishProcessing": [
+   "10",
+   "10"
+  ],
+  "t_FinishTransfer": [
+   "2",
+   "2"
+  ],
+  "t_FinishUnloading": [
+   "2",
+   "2"
+  ],
+  "t_FinishReworkTransfer": [
+   "2",
+   "2"
+  ],
+  "t_InspectionPass": [
+   "1",
+   "1"
+  ],
+  "t_InspectionRework": [
+   "1",
+   "1"
+  ],
+  "t_RecoverLoading": [
+   "16",
+   "16"
+  ],
+  "t_GripperSlipFault": [
+   "1",
+   "3"
+  ],
+  "t_InspectComplete": [
+   "4",
+   "4"
+  ]
+ },
+ "current_intervals": {
+  "t_StartLoading": [
+   "0",
+   "3"
+  ],
+  "t_StartProcessing": [
+   "0",
+   "3"
+  ],
+  "t_StartTransfer": [
+   "0",
+   "3"
+  ],
+  "t_StartInspection": [
+   "0",
+   "3"
+  ],
+  "t_StartUnloading": [
+   "0",
+   "3"
+  ],
+  "t_StartReworkTransfer": [
+   "0",
+   "3"
+  ]
+ },
+ "authorized_endpoint_range": [
+  [
+   "0",
+   "0"
+  ],
+  [
+   "0",
+   "3"
+  ]
+ ],
+ "admissible_intervals": [
+  [
+   "0",
+   "0"
+  ],
+  [
+   "0",
+   "1/2"
+  ],
+  [
+   "0",
+   "1"
+  ],
+  [
+   "0",
+   "3/2"
+  ],
+  [
+   "0",
+   "2"
+  ],
+  [
+   "0",
+   "5/2"
+  ],
+  [
+   "0",
+   "3"
+  ],
+  [
+   "1/2",
+   "1/2"
+  ],
+  [
+   "1/2",
+   "1"
+  ],
+  [
+   "1/2",
+   "3/2"
+  ],
+  [
+   "1/2",
+   "2"
+  ],
+  [
+   "1/2",
+   "5/2"
+  ],
+  [
+   "1/2",
+   "3"
+  ],
+  [
+   "1",
+   "1"
+  ],
+  [
+   "1",
+   "3/2"
+  ],
+  [
+   "1",
+   "2"
+  ],
+  [
+   "1",
+   "5/2"
+  ],
+  [
+   "1",
+   "3"
+  ],
+  [
+   "3/2",
+   "3/2"
+  ],
+  [
+   "3/2",
+   "2"
+  ],
+  [
+   "3/2",
+   "5/2"
+  ],
+  [
+   "3/2",
+   "3"
+  ],
+  [
+   "2",
+   "2"
+  ],
+  [
+   "2",
+   "5/2"
+  ],
+  [
+   "2",
+   "3"
+  ],
+  [
+   "5/2",
+   "5/2"
+  ],
+  [
+   "5/2",
+   "3"
+  ],
+  [
+   "3",
+   "3"
+  ]
+ ],
+ "resolution_s": "1/2",
+ "adjustment_kind": "tighten-only (endpoint grid inside the authorized range)",
+ "max_modified_transitions": 6,
+ "time_cost_objective": "sum of endpoint displacement",
+ "task_preservation": "exact critical sequence preservation + fault-free completion p_completed=2 with all resources free inside H",
+ "fault_frozen": {
+  "t_GripperSlipFault": [
+   "1",
+   "3"
+  ]
+ },
+ "observation_frozen": true,
+ "structure_frozen": true,
+ "domain_sha256": "d1dcf5cddd9b476ee09f576e42cdc39cbf36be7249fb9d8d9073d9f027260a16"
+}

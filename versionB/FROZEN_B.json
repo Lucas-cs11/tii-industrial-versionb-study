@@ -1,0 +1,35 @@
+{
+ "schema": "tii-versionb-frozen/1",
+ "model_file": "versionB_before.json",
+ "model_sha256": "1ec231f1aa521018d01dd6fe17fe396bdc9fa12f93944306d758a7212a91a829",
+ "net_sha256": "2c9a8aafdf257420251b06e6a332746d7cd111e125983c2a88be47876aa5a6ef",
+ "domain_file": "DOMAIN_B.json",
+ "domain_sha256": "d1dcf5cddd9b476ee09f576e42cdc39cbf36be7249fb9d8d9073d9f027260a16",
+ "L": 10,
+ "H": 60,
+ "counts": {
+  "places": 18,
+  "transitions": 16,
+  "arcs": 45
+ },
+ "fault": {
+  "t_GripperSlipFault": [
+   "1",
+   "3"
+  ],
+  "recovery": [
+   "16",
+   "16"
+  ]
+ },
+ "completion": "p_completed=2 with all resources free (first entry)",
+ "observable_alphabet": [
+  "inspection_pass",
+  "inspection_rework",
+  "load_done",
+  "machining_done",
+  "rework_returned",
+  "transfer_done",
+  "unload_done"
+ ]
+}

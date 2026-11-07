@@ -1,0 +1,58 @@
+name: versionb-study
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  study:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: python -m pip install numpy==2.3.4 scipy==1.16.2
+      - name: Clone pinned production verifier
+        run: |
+          git clone --quiet https://github.com/Lucas-cs11/tii-illustrative-tpn-case.git tpn-illustrative-case
+          git -C tpn-illustrative-case checkout --quiet b4b5460c5c3caf62636d6e4083e915002309b933
+      - name: Clone pinned exact oracle engine
+        run: |
+          git clone --quiet https://github.com/Lucas-cs11/tii-published-tpn-case-eval.git literature_tpn_case_eval
+          git -C literature_tpn_case_eval checkout --quiet 73dbbdc
+      - name: Freeze Version B-before and domain
+        run: python versionB/freeze.py | tee results_freeze.json
+      - name: Verify exhaustive Version B-after (production COMPLETE_SET)
+        run: python versionB/after_exhaustive.py | tee results_after.json
+      - name: Bounded paper CPG-LD run (budget)
+        run: |
+          timeout 420 python versionB/run_cpgld_bounded.py --timeout 360 | tee results_cpgld.json || true
+      - name: Summarize
+        run: |
+          python - <<'PY'
+          import json, os, glob, datetime
+          summary = {
+            "run_id": os.environ.get("GITHUB_RUN_ID"),
+            "commit": os.environ.get("GITHUB_SHA"),
+            "utc": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "baseline_certificates": len(json.load(open("versionB/results_before_complete_set.json"))["certificates"]),
+            "after": json.load(open("versionB/results_after_exhaustive.json")),
+            "cpgld": json.load(open("versionB/results_cpgld_bounded.json")) if os.path.exists("versionB/results_cpgld_bounded.json") else None,
+          }
+          json.dump(summary, open("results/summary.json","w") if os.path.isdir("results") else open("summary.json","w"), indent=1)
+          PY
+          mkdir -p results && cp versionB/results_after_exhaustive.json versionB/results_before_complete_set.json versionB/FROZEN_B.json versionB/DOMAIN_B.json results/ 2>/dev/null || true
+          [ -f versionB/results_cpgld_bounded.json ] && cp versionB/results_cpgld_bounded.json results/ || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: versionb-results
+          path: |
+            results/
+            versionB/results_after_exhaustive.json
+            versionB/results_before_complete_set.json
+            versionB/FROZEN_B.json
+            versionB/DOMAIN_B.json
+          if-no-files-found: warn

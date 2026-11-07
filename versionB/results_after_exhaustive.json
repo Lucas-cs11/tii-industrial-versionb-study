@@ -1,0 +1,55 @@
+{
+ "schema": "tii-versionb-after-exhaustive/1",
+ "method": "EXHAUSTIVE (not CPG-LD): 2 control intervals tightened to [0,0]",
+ "changes": {
+  "t_StartLoading": {
+   "from": [
+    "0",
+    "3"
+   ],
+   "to": [
+    "0",
+    "0"
+   ]
+  },
+  "t_StartUnloading": {
+   "from": [
+    "0",
+    "3"
+   ],
+   "to": [
+    "0",
+    "0"
+   ]
+  }
+ },
+ "L": 10,
+ "H": 60,
+ "production_verdict": "VER",
+ "enumeration_complete": true,
+ "certificates": 0,
+ "scg_classes": 188,
+ "scg_edges": 269,
+ "production_runtime_s": 18.38,
+ "normal_completion": {
+  "length": 22,
+  "observable": 10,
+  "interval": [
+   "31",
+   "36"
+  ],
+  "within_H": true
+ },
+ "fault_completion": {
+  "length": 24,
+  "observable": 10,
+  "interval": [
+   "40",
+   "44"
+  ],
+  "within_H": true
+ },
+ "baseline_pairs_still_overlapping": 0,
+ "baseline_pairs_total": 1749,
+ "nonvacuous_task_preservation": true
+}

@@ -1,0 +1,21 @@
+net industrial_17P15T_versionB_before
+tr t_FinishLoading : load_done [2,2] p_loading -> p_robot_free p_wait_machine
+tr t_FinishProcessing : machining_done [10,10] p_processing -> p_machine_free p_wait_transfer
+tr t_FinishReworkTransfer : rework_returned [2,2] p_rework_transfer -> p_robot_free p_wait_machine
+tr t_FinishTransfer : transfer_done [2,2] p_transferring -> p_robot_free p_wait_inspection
+tr t_FinishUnloading : unload_done [2,2] p_unloading -> p_completed p_robot_free
+tr t_GripperSlipFault [1,3] p_loading -> p_grip_recovery
+tr t_InspectComplete [4,4] p_inspecting -> p_inspect_done
+tr t_InspectionPass : inspection_pass [1,1] p_inspect_done -> p_inspection_free p_wait_unload
+tr t_InspectionRework : inspection_rework [1,1] p_inspect_done -> p_inspection_free p_rework_queue
+tr t_RecoverLoading [16,16] p_grip_recovery -> p_loading
+tr t_StartInspection [0,3] p_inspection_free p_wait_inspection -> p_inspecting
+tr t_StartLoading [0,3] p_raw p_robot_free -> p_loading
+tr t_StartProcessing [0,3] p_machine_free p_wait_machine -> p_processing
+tr t_StartReworkTransfer [0,3] p_rework_queue p_robot_free -> p_rework_transfer
+tr t_StartTransfer [0,3] p_robot_free p_wait_transfer -> p_transferring
+tr t_StartUnloading [0,3] p_robot_free p_wait_unload -> p_unloading
+pl p_inspection_free (1)
+pl p_machine_free (1)
+pl p_raw (2)
+pl p_robot_free (1)
