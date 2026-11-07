@@ -1,0 +1,38 @@
+{
+ "backend": "surrogate",
+ "status": "FAILURE",
+ "iterations": 1,
+ "modified_transitions": [],
+ "modified_intervals": {},
+ "elapsed_s": 0.4,
+ "verifier_calls": 0,
+ "log": [],
+ "task_audit": {
+  "constraint_name": "exact_critical_sequence_preservation",
+  "reference_snapshot": {
+   "model_id": "versionB_before",
+   "reference_fingerprint": "25969891d2d6c5546d27f003f24cfe2fa74095f6713c302545af5d621d757132",
+   "L": 10,
+   "H": 60,
+   "n_normal_sequences": 87,
+   "n_fault_sequences": 88
+  },
+  "n_entries": 0,
+  "n_dropped_overflow": 0,
+  "rejected_by_task": 0,
+  "adopted": 0,
+  "entries": []
+ },
+ "counters": {
+  "candidate_generation": 0,
+  "task_rejection": 0,
+  "verifier_evaluations": 0,
+  "verifier_cache_hits": 0,
+  "task_lp_calls": 0,
+  "verification_lp_calls": 0,
+  "lp_repair_calls": 1,
+  "task_check_time_s": 0.0,
+  "lp_search_time_s": 0.3851575829903595
+ },
+ "independent_final_verdict": null
+}

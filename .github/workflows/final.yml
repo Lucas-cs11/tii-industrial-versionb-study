@@ -1,0 +1,56 @@
+name: versionb-final
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  final:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: python -m pip install numpy==2.3.4 scipy==1.16.2
+      - name: Clone pinned production verifier
+        run: |
+          git clone --quiet https://github.com/Lucas-cs11/tii-illustrative-tpn-case.git tpn-illustrative-case
+          git -C tpn-illustrative-case checkout --quiet ffbb2b629788b09c111b9953a8c65aca8bd31cbf
+      - name: Clone pinned exact oracle engine
+        run: |
+          git clone --quiet https://github.com/Lucas-cs11/tii-published-tpn-case-eval.git literature_tpn_case_eval
+          git -C literature_tpn_case_eval checkout --quiet 73dbbdc
+      - name: Freeze final model and domain
+        run: python industrial_versionB/final/scripts/freeze_final.py | tee results_freeze.json
+      - name: Fraction round-trip regression
+        run: python industrial_versionB/final/scripts/fraction_regression.py | tee results_fraction.json
+      - name: Corrected B-before COMPLETE_SET
+        run: python industrial_versionB/final/scripts/baseline_fixed.py | tee results_before.json
+      - name: Official precision-corrected CPG-LD
+        run: python industrial_versionB/final/scripts/cpgld_final.py --timeout 600 --fast --grid "0:0,0:3,1:1,2:2,3:3,3/2:3/2,0:2,2:3" | tee results_cpgld.json
+      - name: Confirm B-after with production COMPLETE_SET
+        run: python industrial_versionB/final/scripts/verify_after_final.py | tee results_after.json
+      - name: Task preservation audit
+        run: python industrial_versionB/final/scripts/task_preservation.py | tee results_task.json
+      - name: Assert core results
+        run: |
+          python - <<'PY'
+          import json
+          b=json.load(open("industrial_versionB/final/results/before_complete_set.json"))
+          a=json.load(open("industrial_versionB/final/results/after_complete_set.json"))
+          c=json.load(open("industrial_versionB/final/results/cpgld_official_run.json"))
+          t=json.load(open("industrial_versionB/final/results/task_preservation.json"))
+          assert b["production_complete_set"]["verdict"]=="AMB"
+          assert b["production_complete_set"]["enumeration_complete"] is True
+          assert a["production_verdict"]=="VER" and a["enumeration_complete"] is True and a["certificates"]==0
+          assert c["status"]=="CPG_LD_SUCCESS"
+          assert t["pass"] is True and t["normal_retained"]==87 and t["fault_retained"]==88
+          print("CORE ASSERTIONS PASS")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: versionb-final-results
+          path: industrial_versionB/final/results/

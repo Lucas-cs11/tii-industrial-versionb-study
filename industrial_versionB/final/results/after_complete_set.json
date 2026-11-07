@@ -1,0 +1,57 @@
+{
+ "schema": "tii-versionb-after-final/1",
+ "model_sha256": "e2c3014a01cdb0ad75f802431ff51b9e0b92f3149fc533a367c64993f3847bef",
+ "L": 10,
+ "H": 60,
+ "production_verdict": "VER",
+ "enumeration_complete": true,
+ "certificates": 0,
+ "scg_classes": 189,
+ "scg_edges": 262,
+ "runtime_s": 40.96,
+ "task_constraint": {
+  "name": "exact_critical_sequence_preservation",
+  "passed": true,
+  "failed_constraints": [],
+  "metrics": {
+   "task_cache_hit": 0,
+   "task_lp_calls_actual": 175,
+   "n_normal_sequences": 87,
+   "n_fault_sequences": 88,
+   "n_normal_retained": 87,
+   "n_fault_retained": 88,
+   "n_oracle_failures": 0
+  }
+ },
+ "changes": {
+  "t_StartLoading": {
+   "from": [
+    "0",
+    "3"
+   ],
+   "to": [
+    "0",
+    "2"
+   ]
+  },
+  "t_StartProcessing": {
+   "from": [
+    "0",
+    "3"
+   ],
+   "to": [
+    "2",
+    "2"
+   ]
+  }
+ },
+ "normal_completion": [
+  "35",
+  "42"
+ ],
+ "fault_completion": [
+  "43",
+  "52"
+ ],
+ "nonvacuous_task_preservation": true
+}

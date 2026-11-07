@@ -1,0 +1,51 @@
+{
+ "L": 10,
+ "H": 60,
+ "verdict": "VER",
+ "enumeration_complete": true,
+ "certificates": 0,
+ "oracle_checked": 0,
+ "oracle_all_overlap": true,
+ "stats": {
+  "scg_classes": 189,
+  "scg_edges": 262,
+  "candidate_words": 7,
+  "candidate_words_processed": 7,
+  "temporal_states": 762,
+  "terminal_pairs": 9348,
+  "lp_calls": 9348
+ },
+ "runtime_s": 20.87,
+ "first_certificates": [],
+ "rework": {
+  "rework_structurally_reachable": true,
+  "rework_timed_witness": {
+   "sequence": [
+    "t_StartLoading",
+    "t_FinishLoading",
+    "t_StartLoading",
+    "t_StartProcessing",
+    "t_FinishLoading",
+    "t_FinishProcessing",
+    "t_StartProcessing",
+    "t_StartTransfer",
+    "t_FinishTransfer",
+    "t_StartInspection",
+    "t_InspectComplete",
+    "t_InspectionRework"
+   ],
+   "length": 12,
+   "observable": 5,
+   "interval": [
+    "23",
+    "28"
+   ],
+   "within_H": true
+  },
+  "earliest_rework_interval": [
+   "23",
+   "28"
+  ],
+  "min_observable_length_rework": 5
+ }
+}

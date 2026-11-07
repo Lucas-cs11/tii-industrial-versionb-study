@@ -1,0 +1,72 @@
+{
+ "schema": "tii-versionb-tina-final/1",
+ "before": {
+  "production_scg": {
+   "classes": 194,
+   "edges": 284
+  },
+  "tina": {
+   "-W": {
+    "states": 194,
+    "edges": 284,
+    "returncode": 0
+   },
+   "-S": {
+    "states": 204,
+    "edges": 300,
+    "returncode": 0
+   },
+   "-E": {
+    "states": 121,
+    "edges": 185,
+    "returncode": 0
+   },
+   "-M": {
+    "states": 104,
+    "edges": 156,
+    "returncode": 0
+   },
+   "-R": {
+    "states": 101,
+    "edges": 180,
+    "returncode": 0
+   }
+  },
+  "W_match": true
+ },
+ "after": {
+  "production_scg": {
+   "classes": 189,
+   "edges": 262
+  },
+  "tina": {
+   "-W": {
+    "states": 189,
+    "edges": 262,
+    "returncode": 0
+   },
+   "-S": {
+    "states": 193,
+    "edges": 270,
+    "returncode": 0
+   },
+   "-E": {
+    "states": 119,
+    "edges": 169,
+    "returncode": 0
+   },
+   "-M": {
+    "states": 112,
+    "edges": 160,
+    "returncode": 0
+   },
+   "-R": {
+    "states": 101,
+    "edges": 180,
+    "returncode": 0
+   }
+  },
+  "W_match": true
+ },
+ "pass": true
+}

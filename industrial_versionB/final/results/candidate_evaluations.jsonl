@@ -1,0 +1,10 @@
+{"call": 0, "t_s": 6.166, "result": "AMB", "n_certs": 108, "modified": {"t_StartLoading": ["0", "0"]}}
+{"call": 1, "t_s": 6.519, "result": "AMB", "n_certs": 108, "modified": {"t_StartLoading": ["1", "1"]}}
+{"call": 2, "t_s": 5.425, "result": "AMB", "n_certs": 948, "modified": {"t_StartLoading": ["0", "2"]}}
+{"call": 3, "t_s": 5.956, "result": "AMB", "n_certs": 72, "modified": {"t_StartProcessing": ["2", "2"]}}
+{"call": 4, "t_s": 6.494, "result": "AMB", "n_certs": 270, "modified": {"t_StartProcessing": ["0", "2"]}}
+{"call": 5, "t_s": 5.377, "result": "AMB", "n_certs": 198, "modified": {"t_StartProcessing": ["2", "3"]}}
+{"call": 6, "t_s": 5.499, "result": "AMB", "n_certs": 444, "modified": {"t_StartTransfer": ["0", "2"]}}
+{"call": 7, "t_s": 5.729, "result": "VER", "n_certs": 0, "modified": {"t_StartLoading": ["0", "2"], "t_StartProcessing": ["2", "2"]}}
+{"call": 8, "t_s": 5.337, "result": "AMB", "n_certs": 1749, "modified": {}}
+{"call": 9, "t_s": 5.927, "result": "VER", "n_certs": 0, "modified": {"t_StartLoading": ["0", "2"], "t_StartProcessing": ["2", "2"]}}

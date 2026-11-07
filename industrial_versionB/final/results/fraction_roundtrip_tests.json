@@ -1,0 +1,62 @@
+{
+ "schema": "tii-fraction-roundtrip/1",
+ "cases": [
+  {
+   "earliest": "0",
+   "latest": "0",
+   "json_roundtrip_equal": true,
+   "exact_fraction": true,
+   "serialized_earliest": "0",
+   "serialized_latest": "0"
+  },
+  {
+   "earliest": "0",
+   "latest": "1/2",
+   "json_roundtrip_equal": true,
+   "exact_fraction": true,
+   "serialized_earliest": "0",
+   "serialized_latest": "1/2"
+  },
+  {
+   "earliest": "1/2",
+   "latest": "1/2",
+   "json_roundtrip_equal": true,
+   "exact_fraction": true,
+   "serialized_earliest": "1/2",
+   "serialized_latest": "1/2"
+  },
+  {
+   "earliest": "3/2",
+   "latest": "3/2",
+   "json_roundtrip_equal": true,
+   "exact_fraction": true,
+   "serialized_earliest": "3/2",
+   "serialized_latest": "3/2"
+  },
+  {
+   "earliest": "1",
+   "latest": "3/2",
+   "json_roundtrip_equal": true,
+   "exact_fraction": true,
+   "serialized_earliest": "1",
+   "serialized_latest": "3/2"
+  },
+  {
+   "earliest": "3/2",
+   "latest": "2",
+   "json_roundtrip_equal": true,
+   "exact_fraction": true,
+   "serialized_earliest": "3/2",
+   "serialized_latest": "2"
+  },
+  {
+   "earliest": "0",
+   "latest": "inf",
+   "json_roundtrip_equal": true,
+   "exact_fraction": true,
+   "serialized_earliest": "0",
+   "serialized_latest": "inf"
+  }
+ ],
+ "pass": true
+}

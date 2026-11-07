@@ -1,0 +1,10 @@
+{
+ "schema": "tii-figure-topology/1",
+ "model_arcs": 45,
+ "dot_arcs": 45,
+ "missing_arcs": 0,
+ "extra_arcs": 0,
+ "place_ids_in_pdf": null,
+ "issues": [],
+ "pass": true
+}

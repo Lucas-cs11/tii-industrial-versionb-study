@@ -1,0 +1,6 @@
+CALL {"call": 0, "t_s": 6.527, "result": "AMB", "n_certs": 108, "modified": {"t_StartLoading": ["0", "0"]}}
+CALL {"call": 1, "t_s": 6.42, "result": "AMB", "n_certs": 108, "modified": {"t_StartLoading": ["1", "1"]}}
+CALL {"call": 2, "t_s": 6.088, "result": "AMB", "n_certs": 948, "modified": {"t_StartLoading": ["0", "2"]}}
+CALL {"call": 3, "t_s": 5.284, "result": "AMB", "n_certs": 72, "modified": {"t_StartProcessing": ["2", "2"]}}
+CALL {"call": 4, "t_s": 5.863, "result": "AMB", "n_certs": 270, "modified": {"t_StartProcessing": ["0", "2"]}}
+CALL {"call": 5, "t_s": 5.338, "result": "AMB", "n_certs": 198, "modified": {"t_StartProcessing": ["2", "3"]}}

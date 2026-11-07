@@ -1,0 +1,188 @@
+{
+ "schema": "tii-adjustment-domain/2",
+ "domain_id": "VERSION_B_FINAL_ILLUSTRATIVE_ADMISSIBLE_ADJUSTMENT",
+ "adjustable_transitions": [
+  "t_StartLoading",
+  "t_StartProcessing",
+  "t_StartTransfer",
+  "t_StartInspection",
+  "t_StartUnloading",
+  "t_StartReworkTransfer"
+ ],
+ "current_intervals": {
+  "t_StartLoading": [
+   "0",
+   "3"
+  ],
+  "t_StartProcessing": [
+   "0",
+   "3"
+  ],
+  "t_StartTransfer": [
+   "0",
+   "3"
+  ],
+  "t_StartInspection": [
+   "0",
+   "3"
+  ],
+  "t_StartUnloading": [
+   "0",
+   "3"
+  ],
+  "t_StartReworkTransfer": [
+   "0",
+   "3"
+  ]
+ },
+ "authorized_endpoint_range": [
+  [
+   "0",
+   "0"
+  ],
+  [
+   "0",
+   "3"
+  ]
+ ],
+ "admissible_intervals": [
+  [
+   "0",
+   "0"
+  ],
+  [
+   "0",
+   "1/2"
+  ],
+  [
+   "0",
+   "1"
+  ],
+  [
+   "0",
+   "3/2"
+  ],
+  [
+   "0",
+   "2"
+  ],
+  [
+   "0",
+   "5/2"
+  ],
+  [
+   "0",
+   "3"
+  ],
+  [
+   "1/2",
+   "1/2"
+  ],
+  [
+   "1/2",
+   "1"
+  ],
+  [
+   "1/2",
+   "3/2"
+  ],
+  [
+   "1/2",
+   "2"
+  ],
+  [
+   "1/2",
+   "5/2"
+  ],
+  [
+   "1/2",
+   "3"
+  ],
+  [
+   "1",
+   "1"
+  ],
+  [
+   "1",
+   "3/2"
+  ],
+  [
+   "1",
+   "2"
+  ],
+  [
+   "1",
+   "5/2"
+  ],
+  [
+   "1",
+   "3"
+  ],
+  [
+   "3/2",
+   "3/2"
+  ],
+  [
+   "3/2",
+   "2"
+  ],
+  [
+   "3/2",
+   "5/2"
+  ],
+  [
+   "3/2",
+   "3"
+  ],
+  [
+   "2",
+   "2"
+  ],
+  [
+   "2",
+   "5/2"
+  ],
+  [
+   "2",
+   "3"
+  ],
+  [
+   "5/2",
+   "5/2"
+  ],
+  [
+   "5/2",
+   "3"
+  ],
+  [
+   "3",
+   "3"
+  ]
+ ],
+ "resolution_s": "1/2",
+ "precision_protocol": "exact rational endpoints; no integer/float rounding",
+ "adjustment_kind": "tighten-only",
+ "max_modified_transitions": 6,
+ "L": 10,
+ "H": 60,
+ "task_preservation": "ExactCriticalSequencePreservation + non-empty normal and faulty complete executions inside H",
+ "completion_marking": {
+  "p_completed": 2,
+  "p_robot_free": 1,
+  "p_machine_free": 1,
+  "p_inspection_free": 1
+ },
+ "fault_set": [
+  "t_GripperSlipFault"
+ ],
+ "observable_alphabet": [
+  "inspection_pass",
+  "inspection_rework",
+  "load_done",
+  "machining_done",
+  "rework_returned",
+  "transfer_done",
+  "unload_done"
+ ],
+ "domain_sha256": "cb43e0e12c26051f4753037e09d7cd11bcf89fe61922f31c0d1f3b33923437e4"
+}

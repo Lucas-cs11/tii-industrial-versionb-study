@@ -1,0 +1,47 @@
+{
+ "production_commit": "ffbb2b629788b09c111b9953a8c65aca8bd31cbf",
+ "production_source_sha256": {
+  "src/scg/builder.py": "d429c0a2086a1e594756f79565074c1cb84c742e76b7d2345e817fb762fd62f8",
+  "src/verifier.py": "0cc00865ecb471f45ff27583ff475efe69066d5bba0017e4b861f22694cc3018",
+  "src/repair/algorithm.py": "436a694496dac84193a03d1899f75c6522d8545254da0fa6d0decb414c5cbf3b",
+  "src/repair/task_constraint.py": "2b856e0a24d0412532e8b1fe3d57dc3fae30d7c50a0900f11506e3e943021011",
+  "src/exact_confirmation/lp_solver.py": "d1c9c62850e5e7cf31d8febd9dc1d64df66877c2e087632e8759a3a246de22d8",
+  "scripts/model_case.py": "b6537b2613f5285d2afddcb228a0b81e3d48502c5e289349b88007b742cf6328"
+ },
+ "independent_engine_repo": "literature_tpn_case_eval",
+ "independent_engine_commit": "73dbbdc73e2256773a998e987ca230a1191bee97",
+ "independent_engine_file_sha256": {
+  "pipeline/scg.py": "0f41727f4c74eda8c80a6ce9e9a4c1c9afb7d37b73f3539b3507499e0c836f71",
+  "pipeline/oracle.py": "937bc97021dc05c949e6a8393fd95c89f7fe903d7ca607336f0384a3508aac3e"
+ },
+ "versionB_model_sha256": "275b99053e3aca943e3372c13d1398575411d22f6672ac9d66956267f524fbe6",
+ "versionB_domain_sha256": "cb43e0e12c26051f4753037e09d7cd11bcf89fe61922f31c0d1f3b33923437e4",
+ "L": 10,
+ "H": 60,
+ "fault": {
+  "t_GripperSlipFault": [
+   "1",
+   "3"
+  ]
+ },
+ "completion_marking": {
+  "p_completed": 2,
+  "p_robot_free": 1,
+  "p_machine_free": 1,
+  "p_inspection_free": 1
+ },
+ "observable_alphabet": [
+  "inspection_pass",
+  "inspection_rework",
+  "load_done",
+  "machining_done",
+  "rework_returned",
+  "transfer_done",
+  "unload_done"
+ ],
+ "counts": {
+  "places": 18,
+  "transitions": 16,
+  "arcs": 45
+ }
+}
